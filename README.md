@@ -34,4 +34,4 @@ To run this project locally:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/top20_movies_app.git
+   git clone https://github.com/AhmedFouadRM/Top-20-movies.git
