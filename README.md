@@ -21,11 +21,12 @@ A Flutter application that shows the top rated, upcoming, now-playing, and trend
 - Add movies to your favorites
 - User-friendly interface with easy navigation
 - Custom Theme with auto light and dark switching theme
+- native splash screen and custom icon
 
 ## Screenshot
 
 <!-- Add a screenshot of your app here when available -->
-<img src="Screenshots\Screenshot1.jpg" width="200"> <img src="Screenshots\Screenshot2.jpg" width="200"> <img src="Screenshots\Screenshot3.jpg" width="200"> <img src="Screenshots\Screenshot4.jpg" width="200"> <img src="Screenshots\Screenshot5.jpg" width="200"> <img src="Screenshots\Screenshot6.jpg" width="200"> <img src="Screenshots\Screenshot7.jpg" width="200"> <img src="Screenshots\Screenshot11.jpg" width="200"> <img src="Screenshots\Screenshot12.jpg" width="200"> <img src="Screenshots\Screenshot13.jpg" width="200"> <img src="Screenshots\Screenshot14.jpg" width="200"> <img src="Screenshots\Screenshot15.jpg" width="200">
+<img src="Screenshots\Screenshot17.jpg" width="200"> <img src="Screenshots\Screenshot2.jpg" width="200"> <img src="Screenshots\Screenshot1.jpg" width="200"> <img src="Screenshots\Screenshot3.jpg" width="200"> <img src="Screenshots\Screenshot4.jpg" width="200"> <img src="Screenshots\Screenshot5.jpg" width="200"> <img src="Screenshots\Screenshot6.jpg" width="200"> <img src="Screenshots\Screenshot16.jpg" width="200"> <img src="Screenshots\Screenshot7.jpg" width="200"> <img src="Screenshots\Screenshot11.jpg" width="200"> <img src="Screenshots\Screenshot12.jpg" width="200"> <img src="Screenshots\Screenshot13.jpg" width="200"> <img src="Screenshots\Screenshot14.jpg" width="200"> <img src="Screenshots\Screenshot15.jpg" width="200"> <img src="Screenshots\Screenshot8.jpg" width="200"> <img src="Screenshots\Screenshot10.jpg" width="200">
 
 ## Installation
 
