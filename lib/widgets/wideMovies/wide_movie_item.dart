@@ -20,12 +20,17 @@ class WideMovieItem extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(kRadius),
-              child: CachedNetworkImage(
-                width: 150,
-                imageUrl: item.posterPath,
-                placeholder: (context, url) =>
-                    const ImageLoading(width: 150, height: 225),
-              ),
+              child: item.posterPath != null
+                  ? CachedNetworkImage(
+                      width: 150,
+                      imageUrl: item.posterPath!,
+                      placeholder: (context, url) =>
+                          const ImageLoading(width: 150, height: 225),
+                    )
+                  : SizedBox(
+                      width: 150,
+                      height: 225,
+                    ),
             ),
             Expanded(
               child: Padding(

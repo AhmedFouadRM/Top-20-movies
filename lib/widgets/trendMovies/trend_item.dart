@@ -17,11 +17,16 @@ class TrendItem extends StatelessWidget {
           Navigator.pushNamed(context, MovieViewBuilder.id,
               arguments: trendModel.id);
         },
-        child: CachedNetworkImage(
-          imageUrl: trendModel.posterPath,
-          placeholder: (context, url) => const ImageLoading(
-              height: kTrendPosterHeight, width: kTrendPosterWidth),
-        ),
+        child: trendModel.posterPath != null
+            ? CachedNetworkImage(
+                imageUrl: trendModel.posterPath!,
+                placeholder: (context, url) => const ImageLoading(
+                    height: kTrendPosterHeight, width: kTrendPosterWidth),
+              )
+            : SizedBox(
+                width: kTrendPosterWidth,
+                height: kTrendPosterHeight,
+              ),
       ),
     );
   }

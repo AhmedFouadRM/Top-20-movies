@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:top_20_movies/models/movie_item_model.dart';
+import 'package:top_20_movies/utils/constant.dart';
 import 'package:top_20_movies/views/movie_view/movie_view_builder.dart';
 import 'package:top_20_movies/widgets/custom_rating_bar.dart';
 import 'package:top_20_movies/widgets/loading/image_loading.dart';
@@ -28,10 +29,15 @@ class SmallMovieItem extends StatelessWidget {
               },
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(16),
-                child: CachedNetworkImage(
-                  imageUrl: movieItemModel.posterPath,
-                  placeholder: (context, url) => const ImageLoading(),
-                ),
+                child: movieItemModel.posterPath != null
+                    ? CachedNetworkImage(
+                        imageUrl: movieItemModel.posterPath!,
+                        placeholder: (context, url) => const ImageLoading(),
+                      )
+                    : SizedBox(
+                        width: kPosterWidth,
+                        height: kPosterHeight,
+                      ),
               ),
             ),
             const SizedBox(

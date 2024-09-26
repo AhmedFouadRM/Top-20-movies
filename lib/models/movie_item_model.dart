@@ -6,7 +6,7 @@ class MovieItemModel {
   final int id;
   final String title;
   final String overview;
-  final String posterPath;
+  final String? posterPath;
   final String? backdropPath;
   final String? releaseDate;
   final String? originalLanguage;
@@ -27,7 +27,7 @@ class MovieItemModel {
       {required this.id,
       required this.title,
       required this.overview,
-      required this.posterPath,
+      this.posterPath,
       this.backdropPath,
       this.releaseDate,
       this.originalLanguage,
@@ -53,7 +53,9 @@ class MovieItemModel {
       id: json['id'],
       title: json['title'],
       overview: json['overview'],
-      posterPath: kBaseURL + kPosterSize + json['poster_path'],
+      posterPath: json['poster_path'] != null
+          ? kBaseURL + kPosterSize + json['poster_path']
+          : null,
       backdropPath: json['backdrop_path'] != null
           ? kBaseURL + kBackdropSize + json['backdrop_path']
           : json['backdrop_path'],
