@@ -1,10 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:top_20_movies/models/movie_item_model.dart';
-import 'package:top_20_movies/widgets/trendMovies/trend_item.dart';
+import 'package:top_20_movies/widgets/poster_image.dart';
 
-class TrendSlider extends StatelessWidget {
-  const TrendSlider({
+class CustomCarouselSlider extends StatelessWidget {
+  const CustomCarouselSlider({
     super.key,
     required this.trendList,
   });
@@ -14,7 +14,7 @@ class TrendSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CarouselSlider.builder(
-      itemBuilder: (context, index, realIndex) => TrendItem(
+      itemBuilder: (context, index, realIndex) => PosterImage(
         trendModel: trendList[index],
       ),
       itemCount: trendList.length,

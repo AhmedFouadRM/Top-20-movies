@@ -5,8 +5,8 @@ import 'package:top_20_movies/utils/constant.dart';
 import 'package:top_20_movies/views/movie_view/movie_view_builder.dart';
 import 'package:top_20_movies/widgets/loading/image_loading.dart';
 
-class TrendItem extends StatelessWidget {
-  const TrendItem({super.key, required this.trendModel});
+class PosterImage extends StatelessWidget {
+  const PosterImage({super.key, required this.trendModel});
   final MovieItemModel trendModel;
   @override
   Widget build(BuildContext context) {
@@ -17,16 +17,20 @@ class TrendItem extends StatelessWidget {
           Navigator.pushNamed(context, MovieViewBuilder.id,
               arguments: trendModel.id);
         },
-        child: trendModel.posterPath != null
-            ? CachedNetworkImage(
-                imageUrl: trendModel.posterPath!,
-                placeholder: (context, url) => const ImageLoading(
-                    height: kTrendPosterHeight, width: kTrendPosterWidth),
-              )
-            : SizedBox(
-                width: kTrendPosterWidth,
-                height: kTrendPosterHeight,
-              ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(16),
+          child: trendModel.posterPath != null
+              ? CachedNetworkImage(
+                  imageUrl: trendModel.posterPath!,
+                  placeholder: (context, url) => const ImageLoading(
+                    width: kTrendPosterWidth,
+                  ),
+                )
+              : SizedBox(
+                  width: kPosterWidth,
+                  height: kPosterHeight,
+                ),
+        ),
       ),
     );
   }
