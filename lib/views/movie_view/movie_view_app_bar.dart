@@ -33,7 +33,7 @@ class MovieViewAppBar extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(kRadius),
-              child: movie.backdropPath != null
+              child: movie.posterPath != null
                   ? CachedNetworkImage(
                       width: kPosterWidth,
                       imageUrl: movie.posterPath!,

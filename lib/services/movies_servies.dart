@@ -129,4 +129,24 @@ class MoviesServices {
     }
     return reviewsList;
   }
+
+  Future<Map<int, String>> getGenres() async {
+    Map<int, String> genresMap = {};
+    try {
+      Response response = await Dio().get('$kDomain/genre/movie/list',
+          queryParameters: {'api_key': kKey, 'language': kLanguage});
+      List<dynamic> jsonList = response.data['genres'];
+      for (var item in jsonList) {
+        genresMap[item['id']] = item['name'];
+      }
+    } on DioException catch (e) {
+      if (e.response != null &&
+          e.response!.statusCode! >= 400 &&
+          e.response!.statusCode! < 500) {
+        throw (e.response!.data['status_message']);
+      }
+      throw ('There is an error, please try again');
+    }
+    return genresMap;
+  }
 }

@@ -19,9 +19,9 @@ class SmallMovieItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            PosterImage(trendModel: movieItemModel),
+            PosterImage(movieModel: movieItemModel),
             const SizedBox(
-              height: 8,
+              height: 4,
             ),
             Text(
               movieItemModel.title,

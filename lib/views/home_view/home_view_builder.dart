@@ -1,45 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:top_20_movies/models/movie_item_model.dart';
-import 'package:top_20_movies/services/genres_service.dart';
-import 'package:top_20_movies/services/movies_servies.dart';
-import 'package:top_20_movies/views/home_view/home_view.dart';
+import 'package:provider/provider.dart';
+import 'package:top_20_movies/models/user_model.dart';
+import 'package:top_20_movies/providers/user_provider.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:top_20_movies/services/auth_service.dart';
+import 'package:top_20_movies/views/home_view/home_view.dart';
 
-class HomeViewBuilder extends StatelessWidget {
+class HomeViewBuilder extends StatefulWidget {
   const HomeViewBuilder({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Top 20 Movies')),
-      body: FutureBuilder(
-        future: initlize(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            FlutterNativeSplash.remove();
-            return HomeView(movies: snapshot.data!);
-          } else if (snapshot.hasError) {
-            FlutterNativeSplash.remove();
-            return Center(child: Text('${snapshot.error}'));
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        },
-      ),
-    );
+  State<HomeViewBuilder> createState() => _HomeViewBuilderState();
+}
+
+class _HomeViewBuilderState extends State<HomeViewBuilder> {
+  @override
+  void initState() {
+    super.initState();
+    _checkSession(Provider.of<UserProvider>(context, listen: false));
   }
 
-  Future<List<List<MovieItemModel>>> initlize() async {
-    await GenresService().getGenres();
-    List<MovieItemModel> trendList = await MoviesServices().getTrendingList();
-    List<MovieItemModel> nowPlayingList =
-        await MoviesServices().getMoviesList(Endpoints.nowPlaying);
-    List<MovieItemModel> popularList =
-        await MoviesServices().getMoviesList(Endpoints.popular);
-    List<MovieItemModel> topRateList =
-        await MoviesServices().getMoviesList(Endpoints.topRated);
-    List<MovieItemModel> upComingList =
-        await MoviesServices().getMoviesList(Endpoints.upComing);
-    return [trendList, nowPlayingList, popularList, topRateList, upComingList];
+  _checkSession(UserProvider userProvider) async {
+    await userProvider.checkSession();
+    String? sessionId = userProvider.getSessionID();
+    UserModel? userModel = userProvider.getUserModel();
+    if (sessionId != null) {
+      if (userModel == null) {
+        userModel = await AuthService().getUser();
+        userProvider.setUserModel(userModel);
+      }
+      Navigator.pushReplacementNamed(context, HomeView.id);
+    } else {
+      // If session doesn't exist, navigate to LoginPage
+      FlutterNativeSplash.remove();
+      Navigator.pushReplacementNamed(context, '/login');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: CircularProgressIndicator());
   }
 }

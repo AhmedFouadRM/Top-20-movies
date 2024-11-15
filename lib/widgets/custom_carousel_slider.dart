@@ -15,7 +15,7 @@ class CustomCarouselSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     return CarouselSlider.builder(
       itemBuilder: (context, index, realIndex) => PosterImage(
-        trendModel: trendList[index],
+        movieModel: trendList[index],
       ),
       itemCount: trendList.length,
       options: CarouselOptions(

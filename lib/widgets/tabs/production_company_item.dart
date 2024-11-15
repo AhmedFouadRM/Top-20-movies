@@ -18,7 +18,7 @@ class ProductionCompanyItem extends StatelessWidget {
         children: [
           if (company.logoPath != null)
             Container(
-              color: Theme.of(context).colorScheme.surfaceVariant,
+              color: Theme.of(context).colorScheme.surfaceContainerHighest,
               child: CachedNetworkImage(
                 width: 200,
                 imageUrl: company.logoPath!,

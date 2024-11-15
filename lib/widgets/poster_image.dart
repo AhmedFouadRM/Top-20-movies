@@ -6,8 +6,8 @@ import 'package:top_20_movies/views/movie_view/movie_view_builder.dart';
 import 'package:top_20_movies/widgets/loading/image_loading.dart';
 
 class PosterImage extends StatelessWidget {
-  const PosterImage({super.key, required this.trendModel});
-  final MovieItemModel trendModel;
+  const PosterImage({super.key, required this.movieModel});
+  final MovieItemModel movieModel;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -15,20 +15,19 @@ class PosterImage extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Navigator.pushNamed(context, MovieViewBuilder.id,
-              arguments: trendModel.id);
+              arguments: movieModel.id);
         },
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16),
-          child: trendModel.posterPath != null
+          child: movieModel.posterPath != null
               ? CachedNetworkImage(
-                  imageUrl: trendModel.posterPath!,
+                  imageUrl: movieModel.posterPath!,
                   placeholder: (context, url) => const ImageLoading(
                     width: kTrendPosterWidth,
                   ),
                 )
-              : SizedBox(
-                  width: kPosterWidth,
-                  height: kPosterHeight,
+              : Image.asset(
+                  'assets/images/poster_dark.png',
                 ),
         ),
       ),

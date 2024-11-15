@@ -1,5 +1,4 @@
 import 'package:top_20_movies/models/spoken_languages_model.dart';
-import 'package:top_20_movies/services/genres_service.dart';
 import 'package:top_20_movies/utils/constant.dart';
 
 class MovieItemModel {
@@ -45,10 +44,7 @@ class MovieItemModel {
       this.revenue});
   factory MovieItemModel.fromSimpleJson(Map<String, dynamic> json) {
     List<dynamic> genreIds = json['genre_ids'];
-    List<String> genres = [];
-    for (int id in genreIds) {
-      genres.add(GenresService.genresMap[id]!);
-    }
+    List<int> genres = genreIds.cast<int>();
     return MovieItemModel(
       id: json['id'],
       title: json['title'],
@@ -74,9 +70,7 @@ class MovieItemModel {
         genresJson.map((genre) => genre['name']).toList().cast<String>();
 
     List<dynamic> productionCompaniesJson = json['production_companies'];
-    // List<ProductionCompanyModel> productionCompanies = productionCompaniesJson
-    //     .map((e) => ProductionCompanyModel.fromJson(e))
-    //     .toList();
+
     List<String> productionCompanies = [];
     for (var companieJson in productionCompaniesJson) {
       if (companieJson['logo_path'] != null) {
@@ -93,7 +87,9 @@ class MovieItemModel {
       id: json['id'],
       title: json['title'],
       overview: json['overview'],
-      posterPath: kBaseURL + kPosterSize + json['poster_path'],
+      posterPath: json['poster_path'] != null
+          ? kBaseURL + kPosterSize + json['poster_path']
+          : null,
       backdropPath: json['backdrop_path'] != null
           ? kBaseURL + kBackdropSize + json['backdrop_path']
           : json['backdrop_path'],

@@ -3,6 +3,7 @@ const String kKey = 'd4db413dc294c74013eb12ea8d1eb842';
 const String kLanguage = 'en-US';
 const String kRegion = 'EG';
 const String kBaseURL = 'https://image.tmdb.org/t/p/';
+const String kGravatarURL = 'https://www.gravatar.com/avatar/';
 const String kPosterSize = 'original';
 const String kBackdropSize = 'original';
 const String kProfileSize = 'w300';
